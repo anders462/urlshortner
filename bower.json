@@ -1,0 +1,25 @@
+{
+  "name": "urlshortner",
+  "description": "Creates a shortcut for submited URL",
+  "main": "server.js",
+  "authors": [
+    "Anders Bengtsson"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "URL"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}

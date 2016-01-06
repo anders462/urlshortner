@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>URL Shortener Microservice</title>
+
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/public/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+  <div class="container jumbotron">
+    <h1> Basejump: URL Shortener Microservice</h1>
+    <p> User stories:</p>
+    <ol>
+      <li>I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.</li>
+      <li>If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.</li>
+      <li>When I visit that shortened URL, it will redirect me to my original link.</li>
+    </ol>
+    <h2>Example usage:</h2>
+    <span>https://timestampapp.herokuapp.com/December%2015,%202015</span></br>
+    <span>https://timestampapp.herokuapp.com/1450137600</span>
+    <h2>Example output:</h2>
+    <span>{ "unix": 1450137600, "natural": "December 15, 2015" }</span>
+  </div>
+
+  </body>
+</html>
