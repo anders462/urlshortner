@@ -1,21 +1,21 @@
 'use strict'
-var timeStamp = require(process.cwd() + '/app/api/timestamp.js');
 
-module.exports = function(app) {
+var UrlShort = require(process.cwd() + '/app/api/urlshortapp.js');
+
+module.exports = function(app,db) {
+
+var urlShort = new UrlShort(db);
 
 //main route to serve index.html
-  app.get('/', function(req,res){
-      res.send("index.html");
+  app.route('/')
+  .get(function(req,res){
+      res.sendFile(process.cwd() + '/public/index.html');
   });
+  //redirect if possible to short url
+  app.route('/:id')
+  .get(urlShort.reDirect);
 
-//route for all api calls
-  app.get('/:query', function(req,res) {
-    timeStamp(req, function(err,time){
-      if (!err){
-      res.send(time);
-    } else {
-      res.send("Error: " + err);
-    }
-  });
-  });
-};
+//route for all add new original_url api calls
+  app.route('/new/*')
+  .get(urlShort.checkValid,urlShort.urlInDb,urlShort.newShortUrl,urlShort.addUrl);
+}
