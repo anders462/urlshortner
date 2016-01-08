@@ -8,6 +8,7 @@ var counter = db.collection('counter');
 var urlProjection = { '_id': false };
 var newShort = {};
 
+// check if redirect exist in Database then redirects
 this.reDirect = function(req,res){
   console.log("find short url " + req.params.id);
   urls.findOne({short_url: baseUrl + req.params.id}, urlProjection, function(err,result){
@@ -25,6 +26,7 @@ this.reDirect = function(req,res){
 
 }
 
+// checks if new submitted URL is valid site
 this.checkValid = function(req,res,next){
   console.log("testing if valid " + req.url.substr(5));
   brokenLink(req.url.substr(5),{allowRedirects:true})
@@ -41,7 +43,7 @@ this.checkValid = function(req,res,next){
 
 }
 
-
+// checks if suggested new url is already in database
 this.urlInDb = function (req,res,next) {
   urls.findOne({original_url: req.url.substr(5)}, urlProjection, function(err,result){
     if (err){
@@ -58,6 +60,7 @@ this.urlInDb = function (req,res,next) {
   });
 }
 
+// creates new short url by adding counter in counter collection
 this.newShortUrl = function(req,res,next){
   console.log("newUrl");
 
@@ -71,7 +74,7 @@ this.newShortUrl = function(req,res,next){
   });
 };
 
-
+// adding new URL to urls collection
 this.addUrl = function(req,res){
 
         urls.insert(newShort, function(err){

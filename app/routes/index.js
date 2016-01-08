@@ -11,10 +11,11 @@ var urlShort = new UrlShort(db);
   .get(function(req,res){
       res.sendFile(process.cwd() + '/public/index.html');
   });
-/*  //redirect if possible to short url
+  
+  //redirect if possible to short url
   app.route('/:id')
   .get(urlShort.reDirect);
-*/
+
 //route for all add new original_url api calls
   app.route('/new/*')
   .get(urlShort.checkValid,urlShort.urlInDb,urlShort.newShortUrl,urlShort.addUrl);
