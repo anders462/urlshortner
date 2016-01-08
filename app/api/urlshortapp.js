@@ -3,7 +3,9 @@ module.exports = function (db) {
 
 var randomGen = require('random-gen');
 var brokenLink = require('broken-link');
+var validUrl = require('valid-url')
 var urls = db.collection('urls');
+var counter = db.collection('counter');
 var urlProjection = { '_id': false };
 var newShort={};
 
@@ -15,7 +17,7 @@ this.reDirect = function(req,res){
     }
     if (!result){
       console.log("no short url found")
-       res.send({error:"not a short url, please try again"})
+       res.status(404).send({error:"not a short url, please try again"})
      } else {
        console.log("redirecting to " + result.original_url);
        res.redirect(result.original_url);
@@ -30,7 +32,7 @@ this.checkValid = function(req,res,next){
           .then(function(answer) {
             if (answer){
               console.log("not valid");
-              res.send({error:"not a valid url, please try again"});
+              res.status(404).send({error:"not a valid url, please try again"});
             } else {
               console.log("valid");
               next();
@@ -73,7 +75,7 @@ this.newShortUrl = function(req,res,next){
       next();
     } else {
       console.log("short exists");
-    
+
     }
  });
 };
