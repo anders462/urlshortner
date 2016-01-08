@@ -1,9 +1,8 @@
 
 module.exports = function (db) {
 
-var randomGen = require('random-gen');
 var brokenLink = require('broken-link');
-//var validUrl = require('valid-url')
+var baseUrl = "https://urlshortn.herokuapp.com/";
 var urls = db.collection('urls');
 var counter = db.collection('counter');
 var urlProjection = { '_id': false };
@@ -11,7 +10,7 @@ var newShort = {};
 
 this.reDirect = function(req,res){
   console.log("find short url " + req.params.id);
-  urls.findOne({short_url: "http://localhost:5000/" + req.params.id}, urlProjection, function(err,result){
+  urls.findOne({short_url: baseUrl + req.params.id}, urlProjection, function(err,result){
     if (err){
       throw(err);
     }
@@ -60,7 +59,6 @@ this.urlInDb = function (req,res,next) {
 }
 
 this.newShortUrl = function(req,res,next){
-  var baseUrl = "http://localhost:5000/" ;
   console.log("newUrl");
 
   counter.findAndModify({},{'_id': 1}, { $inc: { 'url_id': 1 }}, function(err,result){

@@ -23,8 +23,7 @@
   "dependencies": {
     "broken-link": "^1.0.1",
     "express": "^4.13.3",
-    "mongodb": "^2.1.3",
-    "random-gen": "0.0.200"
+    "mongodb": "^2.1.3"
   },
   "engines": {
     "node": "4.2.3"
