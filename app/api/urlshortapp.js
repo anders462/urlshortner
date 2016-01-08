@@ -3,11 +3,11 @@ module.exports = function (db) {
 
 var randomGen = require('random-gen');
 var brokenLink = require('broken-link');
-var validUrl = require('valid-url')
+//var validUrl = require('valid-url')
 var urls = db.collection('urls');
 var counter = db.collection('counter');
 var urlProjection = { '_id': false };
-var newShort={};
+var newShort = {};
 
 this.reDirect = function(req,res){
   console.log("find short url " + req.params.id);
@@ -60,24 +60,17 @@ this.urlInDb = function (req,res,next) {
 }
 
 this.newShortUrl = function(req,res,next){
-  var randomUrl = "http://localhost:5000/" + randomGen.number(1).toLowerCase();
-  console.log(randomUrl);
+  var baseUrl = "http://localhost:5000/" ;
+  console.log("newUrl");
 
-  urls.findOne({short_url: randomUrl}, urlProjection, function(err,result){
+  counter.findAndModify({},{'_id': 1}, { $inc: { 'url_id': 1 }}, function(err,result){
     if (err){
       throw(err);
     }
-
-    if(!result){
-      newShort = {original_url: req.url.substr(5),short_url: randomUrl};
-      console.log("test");
-      console.log(newShort);
+      newShort = {original_url: req.url.substr(5),short_url: baseUrl + result.value.url_id};
+      console.log("added 1 to url: " + newShort.short_url);
       next();
-    } else {
-      console.log("short exists");
-
-    }
- });
+  });
 };
 
 
