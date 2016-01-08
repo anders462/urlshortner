@@ -26,7 +26,8 @@ this.reDirect = function(req,res){
 
 }
 
-// checks if new submitted URL is valid site
+// checks if new submitted URL is valid site by >>>accessing<<<<.
+// Need to enter http://.... to work
 this.checkValid = function(req,res,next){
   console.log("testing if valid " + req.url.substr(5));
   brokenLink(req.url.substr(5),{allowRedirects:true})

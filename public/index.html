@@ -16,24 +16,24 @@
   <div class="container jumbotron">
     <h1>URL Shortener Microservice</h1>
     <p> User stories:</p>
-    <ol>
+    <ol class="user-stories">
       <li>I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.</li>
       <li>If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.</li>
       <li>When I visit that shortened URL, it will redirect me to my original link.</li>
     </ol>
+  </div>
+  <div class="container">
+    <blockquote>
     <h2>Example usage:</h2>
-    <span>https://urlshortn.herokuapp.com/new/https://www.google.com</span></br>
-    <span>https://urlshortn.herokuapp.com/new/http://freecodecamp.com/news</span>
-
+      <span class="urls">https://urlshortn.herokuapp.com/new/https://www.google.com</span></br>
+      <span class="urls">https://urlshortn.herokuapp.com/new/http://freecodecamp.com/news</span>
     <h2>Example output:</h2>
-    <span>{ "original_url": "http://freecodecamp.com/news", "short_url": "https://urlshortn.herokuapp.com/4" }</span>
-
+      <span class="urls">{ "original_url": "http://freecodecamp.com/news", "short_url": "https://urlshortn.herokuapp.com/4" }</span>
     <h2>Usage:</h2>
-    <span>https://urlshortn.herokuapp.com/4</span>
+      <span class="urls">https://urlshortn.herokuapp.com/4</span>
     <h2>Will redirect to:</h2>
-    <span>http://freecodecamp.com/news</span>
-
-
+      <span class="urls">http://freecodecamp.com/news</span>
+    </blockquote>
   </div>
 
   </body>

@@ -1,4 +1,9 @@
-span {
-  color: darkred;
-  font-size: 12;
+
+.urls {
+  color: red;
+  font-size:18px;
+}
+
+.user-stories {
+  font-size:18px;
 }
