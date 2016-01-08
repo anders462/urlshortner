@@ -6,7 +6,7 @@ var express = require('express'),
 //Create app
 var app = express();
 //connect to Database
-mongo.connect('mongodb://heroku_xf5bcjb4:admin462@ds039195.mongolab.com:39195/heroku_xf5bcjb4', function (err, db) {
+mongo.connect(process.env.MONGO_URI, function (err, db) {
 
     if (err) {
         throw new Error('Database failed to connect!');
