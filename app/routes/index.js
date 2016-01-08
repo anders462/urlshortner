@@ -18,5 +18,5 @@ var urlShort = new UrlShort(db);
 //route for all add new original_url api calls
   app.route('/new/*')
   .get(urlShort.checkValid,urlShort.urlInDb,urlShort.newShortUrl,urlShort.addUrl);
+  */
 }
-*/
