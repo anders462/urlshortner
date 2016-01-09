@@ -6,7 +6,7 @@ var express = require('express'),
 //Create app
 var app = express();
 //connect to Database
-mongo.connect("mongodb://localhost:27017/urlshortner", function (err, db) {
+mongo.connect(process.env.HEROKU_MONGO_URI, function (err, db) {
 
     if (err) {
         throw new Error('Database failed to connect!');
