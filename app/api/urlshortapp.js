@@ -23,30 +23,12 @@ this.reDirect = function(req,res){
        res.redirect(result.original_url);
      }
   });
-
 }
 
-// checks if new submitted URL is valid site by >>>accessing<<<<.
-// Need to enter http://.... to work
-this.checkValid = function(req,res,next){
-  console.log("testing if valid " + req.url.substr(5));
-  brokenLink(req.url.substr(5),{allowRedirects:true})
-          .then(function(answer) {
-            if (answer){
-              console.log("not valid");
-              res.status(404).send({error:"not a valid url, please try again"});
-            } else {
-              console.log("valid");
-              next();
-
-            }
-          });
-
-}
 
 // checks if suggested new url is already in database
 this.urlInDb = function (req,res,next) {
-  urls.findOne({original_url: req.url.substr(5)}, urlProjection, function(err,result){
+  urls.findOne({original_url: req.params[0]}, urlProjection, function(err,result){
     if (err){
       throw(err);
     }
@@ -69,7 +51,7 @@ this.newShortUrl = function(req,res,next){
     if (err){
       throw(err);
     }
-      newShort = {original_url: req.url.substr(5),short_url: baseUrl + result.value.url_id};
+      newShort = {original_url: req.params[0],short_url: baseUrl + result.value.url_id};
       console.log("added 1 to url: " + newShort.short_url);
       next();
   });
