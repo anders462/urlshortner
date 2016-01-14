@@ -33,4 +33,8 @@ var checkValid = function(req, res ,next) {
   app.route('/new/*')
   .get(checkValid,urlShort.urlInDb,urlShort.newShortUrl,urlShort.addUrl);
 
+  //handle not defined routes in gracefull way
+  app.use(function(req,res){
+    res.sendStatus(404);
+  });
 }
